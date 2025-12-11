@@ -42,6 +42,17 @@ public class CellsMap {
         }
     }
 
+    public boolean isValid(int x, int y) {
+        return x >= 0 && x < props.getWidth() && y >= 0 && y < props.getHeight();
+    }
+
+    public Cell getCell(int x, int y) {
+        if (isValid(x, y)) {
+            return cells[x][y];
+        }
+        return null;
+    }
+
     public int getAllEnemiesCount() {
         int count = 0;
         for (int x = 0; x < props.getWidth(); x++) {

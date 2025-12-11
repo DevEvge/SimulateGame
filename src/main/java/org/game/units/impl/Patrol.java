@@ -2,6 +2,7 @@ package org.game.units.impl;
 
 import org.game.model.EnemyType;
 import org.game.units.Enemy;
+import org.game.world.CellsMap;
 
 public class Patrol extends Enemy {
 
@@ -16,10 +17,7 @@ public class Patrol extends Enemy {
         return EnemyType.PATROL.getIcon();
     }
 
-    @Override
-    public void move() {
 
-    }
 
     @Override
     public void attack() {

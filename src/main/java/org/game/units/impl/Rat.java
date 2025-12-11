@@ -2,6 +2,7 @@ package org.game.units.impl;
 
 import org.game.model.EnemyType;
 import org.game.units.Enemy;
+import org.game.world.CellsMap;
 
 public class Rat extends Enemy {
 
@@ -16,10 +17,6 @@ public class Rat extends Enemy {
         return EnemyType.RAT.getIcon();
     }
 
-    @Override
-    public void move() {
-
-    }
 
     @Override
     public void attack() {
