@@ -2,6 +2,7 @@ package org.game;
 
 import org.game.controller.RaidController;
 import org.game.model.Locations;
+import org.game.service.SimulationService;
 import org.game.world.CellsMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +12,8 @@ import org.springframework.context.ApplicationContext;
 public class Main {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Main.class, args);
-        RaidController controller = context.getBean(RaidController.class);
+        SimulationService simulationService = context.getBean(SimulationService.class);
 
-        CellsMap map = controller.startRaid(Locations.SLUMS);
-        map.printMap();
-
+        simulationService.startGame(Locations.SLUMS);
     }
 }

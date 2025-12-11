@@ -4,6 +4,8 @@ import org.game.config.GameConfig.RaidLocationProps;
 import org.game.units.Enemy;
 import org.game.units.EnemyFactory;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class CellsMap {
@@ -51,6 +53,16 @@ public class CellsMap {
             return cells[x][y];
         }
         return null;
+    }
+
+    public List<Enemy> getAllEnemiesAsList() {
+        List<Enemy> allEnemies = new ArrayList<>();
+        for (int x = 0; x < props.getWidth(); x++) {
+            for (int y = 0; y < props.getHeight(); y++) {
+                allEnemies.addAll(cells[x][y].getAllResidents());
+            }
+        }
+        return allEnemies;
     }
 
     public int getAllEnemiesCount() {
