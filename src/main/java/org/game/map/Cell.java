@@ -16,4 +16,5 @@ public class Cell {
         this.y = y;
     }
 
+    //TODO: add methods add and delete residents
 }
