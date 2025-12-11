@@ -1,7 +1,7 @@
 package org.game.world;
 
 import lombok.Data;
-import org.game.units.Entity;
+import org.game.units.Enemy;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
 public class Cell {
     private int x;
     private int y;
-    private List<Entity> residents;
+    private List<Enemy> residents;
 
     public Cell(int x, int y){
         this.x = x;

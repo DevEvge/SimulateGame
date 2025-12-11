@@ -2,8 +2,7 @@ package org.game.units.impl;
 
 import org.game.units.Enemy;
 
-public class Patrol extends Enemy {
-
+public class Rat extends Enemy {
     @Override
     public void move() {
 
