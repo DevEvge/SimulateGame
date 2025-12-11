@@ -1,7 +1,7 @@
-package org.game.map;
+package org.game.world;
 
 import lombok.Data;
-import org.game.entity.Entity;
+import org.game.units.Entity;
 
 import java.util.List;
 

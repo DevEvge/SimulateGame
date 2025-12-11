@@ -1,4 +1,4 @@
-package org.game.map;
+package org.game.world;
 
 import org.game.config.GameConfig.RaidLocationProps;
 
@@ -14,8 +14,8 @@ public class CellsMap {
     }
 
     private void initGrid() {
-        for (int y = 0; y < props.getWidth(); y++) {
-            for (int x = 0; x < props.getWidth(); x++) {
+        for (int x = 0; x < props.getWidth(); x++) {
+            for (int y = 0; y < props.getHeight(); y++) {
                 populateCell(x, y);
             }
         }

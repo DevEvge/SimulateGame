@@ -1,7 +1,8 @@
-package org.game.entity;
+package org.game.units.impl;
 
 import lombok.Data;
-import org.game.map.Cell;
+import org.game.units.Entity;
+import org.game.world.Cell;
 
 @Data
 public class Patrol implements Entity {
@@ -10,14 +11,9 @@ public class Patrol implements Entity {
     public Patrol(Cell currentCell) {
         this.currentCell = currentCell;
     }
+    @Override
+    public void move() {}
 
     @Override
-    public void move() {
-
-    }
-
-    @Override
-    public void attack() {
-
-    }
+    public void attack() {}
 }

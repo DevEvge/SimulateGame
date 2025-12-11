@@ -3,9 +3,8 @@ package org.game.controller;
 import lombok.RequiredArgsConstructor;
 import org.game.config.GameConfig;
 import org.game.config.GameConfig.RaidLocationProps;
-import org.game.map.Cell;
-import org.game.map.CellsMap;
-import org.game.map.Locations;
+import org.game.world.CellsMap;
+import org.game.model.Locations;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,5 +16,4 @@ public class RaidController {
         RaidLocationProps props = gameConfig.getLocations().get(location.name().toLowerCase());
         return new CellsMap(props);
     }
-
 }

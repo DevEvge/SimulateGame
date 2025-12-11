@@ -1,8 +1,8 @@
 package org.game.config;
 
 import lombok.Data;
-import org.game.entity.EnemyType;
-import org.game.map.Point;
+import org.game.model.EnemyType;
+import org.game.model.Point;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,7 +22,6 @@ public class GameConfig {
         private double population;
 
         private List<EnemyType> allowedEnemies;
-
         private List<Point> spawnPoints;
         private List<Point> exits;
         private List<Point> pois;

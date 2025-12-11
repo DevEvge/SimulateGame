@@ -1,4 +1,4 @@
-package org.game.map;
+package org.game.model;
 
 public enum Locations {
     SLUMS,
