@@ -3,6 +3,13 @@ package org.game.units.impl;
 import org.game.units.Enemy;
 
 public class Sniper extends Enemy {
+
+    public Sniper() {
+        setHealthPoints(100);
+        setDamage(10);
+        setArmor(10);
+    }
+
     @Override
     public void move() {
 

@@ -9,6 +9,9 @@ public abstract class Enemy {
 
     @ToString.Exclude
     private Cell currentCell;
+    private int healthPoints;
+    private int damage;
+    private int armor;
 
     public abstract void move();
     public abstract void attack();
