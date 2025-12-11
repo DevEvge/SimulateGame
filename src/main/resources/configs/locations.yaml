@@ -2,8 +2,8 @@ raid-configs:
   locations:
     slums:
       width: 50
-      height: 50
-      population: 0.7
+      height: 20
+      population: 0.1
       allowed-enemies:
         - PATROL
         - RAT

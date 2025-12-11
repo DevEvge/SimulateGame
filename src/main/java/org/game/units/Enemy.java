@@ -13,6 +13,7 @@ public abstract class Enemy {
     private int damage;
     private int armor;
 
+    public abstract String getIcon();
     public abstract void move();
     public abstract void attack();
 
