@@ -1,23 +1,24 @@
 package org.game.map;
 
+import lombok.Data;
+
+
 public class CellsMap {
-    int width;
-    int height;
+    private final int width;
+    private final int height;
+    private Cell[][] grid;
 
-    Cell[][] grid;
-
-
-    public CellsMap() {
+    public CellsMap(int width, int height) {
+        this.width = width;
+        this.height = height;
         this.grid = new Cell[width][height];
-        fillGridAndPopulateCells();
+        initGrid();
     }
 
-
-    private void fillGridAndPopulateCells() {
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                grid[x][y] = new Cell();
-
+    private void initGrid() {
+        for (int y = 0; y < width; y++) {
+            for (int x = 0; x < height; x++) {
+                grid[x][y] = new Cell(x, y);
             }
         }
     }

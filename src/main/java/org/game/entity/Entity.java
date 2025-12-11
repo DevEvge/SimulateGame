@@ -1,9 +1,6 @@
 package org.game.entity;
 
-import org.game.map.Cell;
-
-public interface Enemy {
+public interface Entity {
     void move();
     void attack();
-
 }

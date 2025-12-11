@@ -4,7 +4,7 @@ import lombok.Data;
 import org.game.map.Cell;
 
 @Data
-public class Patrol implements Enemy{
+public class Patrol implements Entity {
     private Cell currentCell;
 
     public Patrol(Cell currentCell) {

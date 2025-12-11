@@ -1,14 +1,19 @@
 package org.game.map;
 
 import lombok.Data;
-import org.game.entity.Enemy;
+import org.game.entity.Entity;
 
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class Cell {
-    private Map<Direction, Cell> neighbors;
-    private List<Enemy> residents;
+    private int x;
+    private int y;
+    private List<Entity> residents;
+
+    public Cell(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 
 }
