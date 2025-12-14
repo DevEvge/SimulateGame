@@ -1,6 +1,7 @@
 package org.game.world;
 
 import org.game.config.GameConfig.RaidLocationProps;
+import org.game.units.Creature;
 import org.game.units.Enemy;
 import org.game.units.EnemyFactory;
 
@@ -55,8 +56,8 @@ public class CellsMap {
         return null;
     }
 
-    public List<Enemy> getAllEnemiesAsList() {
-        List<Enemy> allEnemies = new ArrayList<>();
+    public List<Creature> getAllEnemiesAsList() {
+        List<Creature> allEnemies = new ArrayList<>();
         for (int x = 0; x < props.getWidth(); x++) {
             for (int y = 0; y < props.getHeight(); y++) {
                 allEnemies.addAll(cells[x][y].getAllResidents());
@@ -97,8 +98,8 @@ public class CellsMap {
                 if (cell.isEmpty()) {
                     System.out.print(". "); // Пусто
                 } else {
-                    Enemy enemy = cell.getAllResidents().get(0);
-                    System.out.print(enemy.getIcon() + " ");
+                    Creature creature = cell.getAllResidents().getFirst();
+                    System.out.print(creature.getIcon() + " ");
                 }
             }
             System.out.println();

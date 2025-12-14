@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.game.controller.RaidController;
 import org.game.model.Locations;
+import org.game.units.Creature;
 import org.game.units.Enemy;
 import org.game.world.CellsMap;
 import org.springframework.stereotype.Service;
@@ -33,10 +34,10 @@ public class SimulationService {
     }
 
     private void updateState(CellsMap map) {
-        List<Enemy> enemies = map.getAllEnemiesAsList();
+        List<Creature> enemies = map.getAllEnemiesAsList();
 
-        for (Enemy enemy: enemies) {
-            enemy.move(map);
+        for (Creature creature: enemies) {
+            creature.move(map);
         }
     }
 

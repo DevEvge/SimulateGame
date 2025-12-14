@@ -7,7 +7,8 @@ import org.game.world.CellsMap;
 public class Sniper extends Enemy {
 
     public Sniper() {
-        setHealthPoints(100);
+        setHp(100);
+        setMaxHp(100);
         setDamage(10);
         setArmor(10);
     }

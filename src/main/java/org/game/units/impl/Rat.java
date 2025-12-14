@@ -7,7 +7,8 @@ import org.game.world.CellsMap;
 public class Rat extends Enemy {
 
     public Rat() {
-        setHealthPoints(100);
+        setHp(100);
+        setMaxHp(100);
         setDamage(5);
         setArmor(0);
     }

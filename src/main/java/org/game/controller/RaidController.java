@@ -3,10 +3,15 @@ package org.game.controller;
 import lombok.RequiredArgsConstructor;
 import org.game.config.GameConfig;
 import org.game.config.GameConfig.RaidLocationProps;
+import org.game.model.Point;
+import org.game.player.model.Hero;
 import org.game.units.EnemyFactory;
 import org.game.world.CellsMap;
 import org.game.model.Locations;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +28,12 @@ public class RaidController {
         }
         CellsMap map = new CellsMap(props);
         map.populateEnemies(factory);
+        List<Point> spawnPoints = props.getSpawnPoints();
+        Random random = new Random();
+        Point spawnPoint = spawnPoints.get(random.nextInt(spawnPoints.size()));
+        map.getCell(spawnPoint.getX(), spawnPoint.getY()).addResident(new Hero("Boris Britva"));
+
+
 
         System.out.println("========================================");
         System.out.println("РЕЙД ЗАПУЩЕН: " + location);

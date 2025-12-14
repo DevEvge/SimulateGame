@@ -8,18 +8,15 @@ import org.game.world.CellsMap;
 import java.util.Random;
 
 @Data
-public abstract class Enemy {
+public abstract class Enemy extends Creature{
 
     private Random random = new Random();
-    @ToString.Exclude
-    private Cell currentCell;
-    private int healthPoints;
-    private int damage;
     private int armor;
 
+    @Override
     public void move(CellsMap map) {
         Cell current = getCurrentCell();
-        if (currentCell == null) return;
+        if (current == null) return;
 
         int dx = random.nextInt(3) - 1;
         int dy = random.nextInt(3) - 1;
@@ -34,8 +31,6 @@ public abstract class Enemy {
             current.removeResident(this);
             targetCell.addResident(this);
         }
-
-
     }
 
     public abstract void attack();
