@@ -1,6 +1,7 @@
 package org.game.player.model;
 
 import lombok.ToString;
+import org.game.model.Direction;
 import org.game.units.Creature;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
@@ -31,12 +32,12 @@ public class Hero extends Creature {
     }
 
 
-    public void manualMove(CellsMap map, int dx, int dy) {
+    public void manualMove(CellsMap map, Direction dir) {
         Cell currentCell = getCurrentCell();
         if (currentCell == null) return;
 
-        int newX = currentCell.getX() + dx;
-        int newY = currentCell.getY() + dy;
+        int newX = currentCell.getX() + dir.getDx();
+        int newY = currentCell.getY() + dir.getDy();
 
         if (map.isValid(newX, newY)) {
             Cell targetCell = map.getCell(newX, newY);
@@ -46,6 +47,8 @@ public class Hero extends Creature {
             }
             currentCell.removeResident(this);
             targetCell.addResident(this);
+        } else {
+            System.out.println("Некорректные координатыw");
         }
     }
 }

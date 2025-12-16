@@ -17,10 +17,10 @@ import java.util.List;
 public class SimulationService {
     private final RaidController raidController;
 
-    public void startGame(Locations locations) {
+    public RaidController startGame(Locations locations) {
         CellsMap map = raidController.startRaid(locations);
         new Thread(() -> gameLoop(map)).start();
-
+        return raidController;
     }
 
     @SneakyThrows
