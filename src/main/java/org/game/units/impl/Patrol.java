@@ -7,6 +7,7 @@ import org.game.world.CellsMap;
 public class Patrol extends Enemy {
 
     public Patrol() {
+        setName("Patrol");
         setHp(100);
         setMaxHp(100);
         setDamage(10);

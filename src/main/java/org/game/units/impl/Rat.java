@@ -7,6 +7,7 @@ import org.game.world.CellsMap;
 public class Rat extends Enemy {
 
     public Rat() {
+        setName("Rat");
         setHp(100);
         setMaxHp(100);
         setDamage(5);

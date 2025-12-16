@@ -7,6 +7,7 @@ import org.game.world.CellsMap;
 public class Sniper extends Enemy {
 
     public Sniper() {
+        setName("Sniper");
         setHp(100);
         setMaxHp(100);
         setDamage(10);
