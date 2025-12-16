@@ -1,19 +1,17 @@
 package org.game.units;
 
 import lombok.Data;
-import lombok.ToString;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
 
 import java.util.Random;
 
 @Data
-public abstract class Enemy extends Creature{
+public abstract class Enemy extends Creature {
 
     private Random random = new Random();
     private int armor;
 
-    @Override
     public void move(CellsMap map) {
         Cell current = getCurrentCell();
         if (current == null) return;
@@ -33,6 +31,7 @@ public abstract class Enemy extends Creature{
     }
 
     public abstract void attack();
+
     public abstract String getIcon();
 
 }

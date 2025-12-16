@@ -2,7 +2,6 @@ package org.game.player.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.game.model.Direction;
 import org.game.units.Creature;
 import org.game.world.Cell;
@@ -19,10 +18,6 @@ public class Hero extends Creature {
 
     public Hero(String name) {
         setName(name);
-    }
-
-    @Override
-    public void move(CellsMap cell) {
     }
 
     public void manualMove(CellsMap map, Direction dir) {

@@ -3,8 +3,6 @@ package org.game.world;
 import lombok.Data;
 import lombok.ToString;
 import org.game.units.Creature;
-import org.game.units.Enemy;
-import org.game.units.EnemyFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -51,7 +49,7 @@ public class Cell {
         return all;
     }
 
-    public boolean isEmpty(){
-        return  residents.isEmpty();
+    public boolean isEmpty() {
+        return residents.isEmpty();
     }
 }

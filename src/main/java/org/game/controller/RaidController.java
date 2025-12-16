@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.game.config.GameConfig;
 import org.game.config.GameConfig.RaidLocationProps;
 import org.game.model.Direction;
+import org.game.model.Locations;
 import org.game.model.Point;
 import org.game.player.model.Hero;
 import org.game.units.EnemyFactory;
 import org.game.world.CellsMap;
-import org.game.model.Locations;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class RaidController {
     private Hero hero;
     private CellsMap map;
 
-    public CellsMap startRaid(Locations location){
+    public CellsMap startRaid(Locations location) {
         String key = location.name().toLowerCase();
         RaidLocationProps props = gameConfig.getLocations().get(key);
         map = new CellsMap(props);
@@ -60,8 +60,6 @@ public class RaidController {
         hero = new Hero("Boris Britva");
         map.getCell(spawnPoint.getX(), spawnPoint.getY()).addResident(hero);
     }
-
-
 
 
 }

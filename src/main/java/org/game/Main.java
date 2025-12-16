@@ -4,7 +4,6 @@ import org.game.controller.RaidController;
 import org.game.model.Direction;
 import org.game.model.Locations;
 import org.game.service.SimulationService;
-import org.game.world.CellsMap;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +16,7 @@ public class Main {
         ApplicationContext context = SpringApplication.run(Main.class, args);
         SimulationService simulationService = context.getBean(SimulationService.class);
 
-        Scanner scanner = new  Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         RaidController controller = simulationService.startGame(Locations.SLUMS);
         boolean isRunning = true;
         while (isRunning) {

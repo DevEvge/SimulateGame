@@ -56,11 +56,14 @@ public class CellsMap {
         return null;
     }
 
-    public List<Creature> getAllEnemiesAsList() {
-        List<Creature> allEnemies = new ArrayList<>();
+    public List<Enemy> getAllEnemies() {
+        List<Enemy> allEnemies = new ArrayList<>();
         for (int x = 0; x < props.getWidth(); x++) {
             for (int y = 0; y < props.getHeight(); y++) {
-                allEnemies.addAll(cells[x][y].getAllResidents());
+                for (Creature creature : cells[x][y].getAllResidents())
+                    if (creature instanceof Enemy enemy) {
+                        allEnemies.add(enemy);
+                    }
             }
         }
         return allEnemies;
