@@ -28,8 +28,7 @@ public abstract class Enemy extends Creature{
 
         if (map.isValid(newX, newY)) {
             Cell targetCell = map.getCell(newX, newY);
-            current.removeResident(this);
-            targetCell.addResident(this);
+            moveTo(targetCell);
         }
     }
 
