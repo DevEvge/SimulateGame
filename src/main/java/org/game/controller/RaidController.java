@@ -1,19 +1,23 @@
 package org.game.controller;
 
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.game.config.GameConfig;
 import org.game.config.GameConfig.RaidLocationProps;
 import org.game.model.Direction;
 import org.game.model.Locations;
 import org.game.model.Point;
+import org.game.model.RaidState;
 import org.game.player.model.Hero;
 import org.game.units.EnemyFactory;
+import org.game.world.Cell;
 import org.game.world.CellsMap;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
+@Data
 @Service
 @RequiredArgsConstructor
 public class RaidController {
@@ -21,11 +25,13 @@ public class RaidController {
     private final EnemyFactory factory;
     private Hero hero;
     private CellsMap map;
+    private RaidState state = RaidState.EXPLORING;
 
     public CellsMap startRaid(Locations location) {
         String key = location.name().toLowerCase();
         RaidLocationProps props = gameConfig.getLocations().get(key);
         map = new CellsMap(props);
+        state = RaidState.EXPLORING;
 
         map.populateEnemies(factory);
         spawnHero(props);
@@ -37,6 +43,10 @@ public class RaidController {
 
     public void heroMove(Direction dir) {
         hero.manualMove(map, dir);
+        Cell currentCell = hero.getCurrentCell();
+        if (currentCell.getAllResidents().size() > 1) {
+            state = RaidState.COMBAT_CHOICE;
+        }
     }
 
     private void raidStatistic(Locations location, RaidLocationProps props) {

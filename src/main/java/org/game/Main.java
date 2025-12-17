@@ -3,6 +3,7 @@ package org.game;
 import org.game.controller.RaidController;
 import org.game.model.Direction;
 import org.game.model.Locations;
+import org.game.model.RaidState;
 import org.game.service.SimulationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,18 +23,37 @@ public class Main {
         while (isRunning) {
 
             String input = scanner.nextLine();
-            Direction dir = switch (input) {
-                case "w" -> Direction.UP;
-                case "s" -> Direction.DOWN;
-                case "a" -> Direction.LEFT;
-                case "d" -> Direction.RIGHT;
-                default -> null;
-            };
-            if (dir != null) {
-                controller.heroMove(dir);
-            }
-            if (input.equals("p")) {
-                isRunning = false;
+
+
+            if (controller.getState() == RaidState.EXPLORING) {
+                Direction dir = switch (input) {
+                    case "w" -> Direction.UP;
+                    case "s" -> Direction.DOWN;
+                    case "a" -> Direction.LEFT;
+                    case "d" -> Direction.RIGHT;
+                    default -> null;
+                };
+                if (dir != null) {
+                    controller.heroMove(dir);
+                }
+                if (input.equals("p")) {
+                    isRunning = false;
+                }
+            } else if (controller.getState() == RaidState.COMBAT_CHOICE) {
+                System.out.println("1. Атаковать\n2. Сбежать");
+                String choice = switch (input) {
+                    case "1" -> "Атака";
+                    case "2" -> "Защита";
+                    default -> null;
+                };
+
+                if (choice != null) {
+
+                }
+
+                if (input.equals("p")) {
+                    isRunning = false;
+                }
 
             }
         }

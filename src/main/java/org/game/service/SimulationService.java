@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.game.controller.RaidController;
 import org.game.model.Locations;
+import org.game.model.RaidState;
 import org.game.units.Enemy;
 import org.game.world.CellsMap;
 import org.springframework.stereotype.Service;
@@ -24,10 +25,12 @@ public class SimulationService {
     @SneakyThrows
     private void gameLoop(CellsMap map) {
         while (true) {
-            System.out.println("\n".repeat(50));
-            map.printMap();
-            Thread.sleep(1000);
-            updateState(map);
+            if (raidController.getState() == RaidState.COMBAT_CHOICE) {
+                System.out.println("\n".repeat(50));
+                map.printMap();
+                Thread.sleep(1000);
+                updateState(map);
+            }
         }
     }
 
