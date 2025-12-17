@@ -18,6 +18,10 @@ public class Hero extends Creature {
 
     public Hero(String name) {
         setName(name);
+        setHp(100);
+        setMaxHp(100);
+        setDamage(10);
+
     }
 
     public void manualMove(CellsMap map, Direction dir) {

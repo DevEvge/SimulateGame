@@ -16,7 +16,7 @@ import java.util.List;
 public class SimulationService {
     private final RaidController raidController;
 
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedRate = 3000)
     @SneakyThrows
     private void gameTick() {
         CellsMap map = raidController.getMap();

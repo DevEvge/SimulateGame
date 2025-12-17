@@ -2,3 +2,5 @@ spring:
   config:
     import:
       - classpath:configs/locations.yaml
+      - classpath:configs/enemies.yaml
+      - classpath:configs/items.yaml

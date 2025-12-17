@@ -92,6 +92,7 @@ public class CellsMap {
     }
 
     public void printMap() {
+        System.out.println("\n".repeat(50));
         System.out.println("--- КАРТА ---");
 
         for (int y = 0; y < props.getHeight(); y++) {
@@ -108,7 +109,7 @@ public class CellsMap {
             System.out.println();
         }
         System.out.println("-------------");
-        System.out.println("\n".repeat(50));
+
     }
 
 }
