@@ -1,31 +1,43 @@
 package org.game;
 
+import lombok.RequiredArgsConstructor;
 import org.game.controller.RaidController;
 import org.game.model.Direction;
 import org.game.model.Locations;
 import org.game.model.RaidState;
-import org.game.service.SimulationService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Scanner;
 
-@EnableScheduling
 @SpringBootApplication
-public class Main {
-    public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(Main.class, args);
-        SimulationService simulationService = context.getBean(SimulationService.class);
+@EnableScheduling
+@RequiredArgsConstructor
+public class Main implements CommandLineRunner {
+    private final RaidController controller;
 
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
         Scanner scanner = new Scanner(System.in);
-        RaidController controller = simulationService.startGame(Locations.SLUMS);
+        controller.startRaid(Locations.SLUMS);
+
         boolean isRunning = true;
         while (isRunning) {
+            // Рисуем меню, если бой
+            if (controller.getState() == RaidState.COMBAT_CHOICE) {
+                System.out.println("⚠️ ВРАГ ОБНАРУЖЕН! ⚠️");
+                System.out.println("1. Атаковать");
+                System.out.println("2. Сбежать");
+            }
 
+            if (!scanner.hasNextLine()) break;
             String input = scanner.nextLine();
-
 
             if (controller.getState() == RaidState.EXPLORING) {
                 Direction dir = switch (input) {
@@ -35,19 +47,17 @@ public class Main {
                     case "d" -> Direction.RIGHT;
                     default -> null;
                 };
-                if (dir != null) {
-                    controller.heroMove(dir);
-                }
+                if (dir != null) controller.heroMove(dir);
+
             } else if (controller.getState() == RaidState.COMBAT_CHOICE) {
-                System.out.println("1. Атаковать\n2. Сбежать");
                 if (input.equals("1")) controller.fight();
                 if (input.equals("2")) controller.escape();
+            }
 
-
-                if (input.equals("p")) {
-                    isRunning = false;
-                }
-
+            if (input.equals("p")) {
+                isRunning = false;
+                System.out.println("Игра завершена.");
+                System.exit(0);
             }
         }
     }

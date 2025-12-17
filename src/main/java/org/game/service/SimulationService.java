@@ -16,11 +16,6 @@ import java.util.List;
 public class SimulationService {
     private final RaidController raidController;
 
-    public RaidController startGame(Locations locations) {
-        raidController.startRaid(locations);
-        return raidController;
-    }
-
     @Scheduled(fixedRate = 1000)
     @SneakyThrows
     private void gameTick() {
