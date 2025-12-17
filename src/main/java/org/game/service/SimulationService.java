@@ -7,8 +7,8 @@ import org.game.model.Locations;
 import org.game.model.RaidState;
 import org.game.units.Enemy;
 import org.game.world.CellsMap;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -17,31 +17,21 @@ public class SimulationService {
     private final RaidController raidController;
 
     public RaidController startGame(Locations locations) {
-        CellsMap map = raidController.startRaid(locations);
-        new Thread(() -> gameLoop(map)).start();
+        raidController.startRaid(locations);
         return raidController;
     }
 
+    @Scheduled(fixedRate = 1000)
     @SneakyThrows
-    private void gameLoop(CellsMap map) {
-        while (true) {
-            if (raidController.getState() == RaidState.COMBAT_CHOICE) {
-                Thread.sleep(1000);
-                continue;
-            }
-            System.out.println("\n".repeat(50));
-            map.printMap();
-            Thread.sleep(1000);
-            updateState(map);
-        }
-    }
+    private void gameTick() {
+        CellsMap map = raidController.getMap();
+        if (map == null) return;
+        if (raidController.getState() == RaidState.COMBAT_CHOICE) return;
 
-    private void updateState(CellsMap map) {
+        map.printMap();
         List<Enemy> enemies = map.getAllEnemies();
-
         for (Enemy enemy : enemies) {
             enemy.move(map);
         }
     }
-
 }

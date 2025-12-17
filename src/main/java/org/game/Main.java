@@ -8,9 +8,11 @@ import org.game.service.SimulationService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Scanner;
 
+@EnableScheduling
 @SpringBootApplication
 public class Main {
     public static void main(String[] args) {
@@ -35,9 +37,6 @@ public class Main {
                 };
                 if (dir != null) {
                     controller.heroMove(dir);
-                }
-                if (input.equals("p")) {
-                    isRunning = false;
                 }
             } else if (controller.getState() == RaidState.COMBAT_CHOICE) {
                 System.out.println("1. Атаковать\n2. Сбежать");
