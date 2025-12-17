@@ -27,7 +27,7 @@ public class RaidController {
     private CellsMap map;
     private RaidState state = RaidState.EXPLORING;
 
-    public CellsMap startRaid(Locations location) {
+    public void startRaid(Locations location) {
         String key = location.name().toLowerCase();
         RaidLocationProps props = gameConfig.getLocations().get(key);
         map = new CellsMap(props);
@@ -36,8 +36,6 @@ public class RaidController {
         map.populateEnemies(factory);
         spawnHero(props);
         raidStatistic(location, props);
-
-        return map;
     }
 
 
