@@ -49,6 +49,16 @@ public class RaidController {
         }
     }
 
+    public void fight() {
+        System.out.println("Тут будет бой");
+        state = RaidState.EXPLORING;
+    }
+
+    public void escape() {
+        System.out.println("Тут будет сбег");
+        state = RaidState.EXPLORING;
+    }
+
     private void raidStatistic(Locations location, RaidLocationProps props) {
         System.out.println("========================================");
         System.out.println("РЕЙД ЗАПУЩЕН: " + location);
@@ -70,6 +80,4 @@ public class RaidController {
         hero = new Hero("Boris Britva");
         map.getCell(spawnPoint.getX(), spawnPoint.getY()).addResident(hero);
     }
-
-
 }

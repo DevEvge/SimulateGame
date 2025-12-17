@@ -41,15 +41,9 @@ public class Main {
                 }
             } else if (controller.getState() == RaidState.COMBAT_CHOICE) {
                 System.out.println("1. Атаковать\n2. Сбежать");
-                String choice = switch (input) {
-                    case "1" -> "Атака";
-                    case "2" -> "Защита";
-                    default -> null;
-                };
+                if (input.equals("1")) controller.fight();
+                if (input.equals("2")) controller.escape();
 
-                if (choice != null) {
-
-                }
 
                 if (input.equals("p")) {
                     isRunning = false;
