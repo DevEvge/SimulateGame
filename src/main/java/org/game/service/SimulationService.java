@@ -25,7 +25,7 @@ public class SimulationService {
     @SneakyThrows
     private void gameLoop(CellsMap map) {
         while (true) {
-            if (raidController.getState() == RaidState.EXPLORING) {
+            if (raidController.getState() == RaidState.COMBAT_CHOICE) {
                 Thread.sleep(1000);
                 continue;
             }
