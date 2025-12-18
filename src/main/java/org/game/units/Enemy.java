@@ -1,26 +1,38 @@
 package org.game.units;
 
-import lombok.Data;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.game.model.EnemyType;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
 
+import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
 
 @Data
-public abstract class Enemy extends Creature {
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Enemy extends Creature {
 
-    private Random random = new Random();
-    private int armor;
+    private EnemyType type;
+    private int expReward;
+    private int moneyMin;
+    private int moneyMax;
+    private Map<String, Double> loot;
+
+
 
     public void move(CellsMap map) {
         Cell current = getCurrentCell();
         if (current == null) return;
-
-        int dx = random.nextInt(3) - 1;
-        int dy = random.nextInt(3) - 1;
+        int dx = ThreadLocalRandom.current().nextInt(3) - 1;
+        int dy = ThreadLocalRandom.current().nextInt(3) - 1;
 
         if (dx == 0 && dy == 0) return;
-
         int newX = current.getX() + dx;
         int newY = current.getY() + dy;
 
@@ -30,8 +42,11 @@ public abstract class Enemy extends Creature {
         }
     }
 
-    public abstract void attack();
+    public void attack() {
+    }
 
-    public abstract String getIcon();
+    public String getIcon() {
+        return type.getIcon();
+    }
 
 }

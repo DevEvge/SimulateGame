@@ -1,17 +1,18 @@
 package org.game.units;
 
+import lombok.RequiredArgsConstructor;
+import org.game.config.EnemiesConfig;
 import org.game.model.EnemyType;
-import org.game.units.impl.Patrol;
-import org.game.units.impl.Rat;
-import org.game.units.impl.Sniper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Random;
 
 @Service
+@RequiredArgsConstructor
 public class EnemyFactory {
     private final Random random = new Random();
+    private final EnemiesConfig enemiesConfig;
 
     public Enemy createEnemy(List<EnemyType> allowedTypes) {
         if (allowedTypes == null || allowedTypes.isEmpty()) {
@@ -19,11 +20,28 @@ public class EnemyFactory {
         }
 
         EnemyType type = allowedTypes.get(random.nextInt(allowedTypes.size()));
-        return switch (type) {
-            case PATROL -> new Patrol();
-            case RAT -> new Rat();
-            case SNIPER -> new Sniper();
-            default -> throw new IllegalArgumentException("Unknown enemy type: " + type);
-        };
+        String key = type.name().toLowerCase();
+
+        var props = enemiesConfig.getEnemies().get(key);
+        if (props == null) {
+            System.out.println("No enemy config");
+            return null;
+        }
+
+        return Enemy.builder()
+                .type(type)
+                .name(props.getName())
+                .hp(props.getHp())
+                .maxHp(props.getHp())
+                .minDamage(props.getDamageMin())
+                .maxDamage(props.getDamageMax())
+                .defense(props.getDefense())
+                .agility(props.getAgility())
+                .expReward(props.getExpReward())
+                .moneyMin(props.getMoneyMin())
+                .moneyMax(props.getMoneyMax())
+                .loot(props.getLoot())
+                .build();
+
     }
 }
