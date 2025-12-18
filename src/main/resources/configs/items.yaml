@@ -1,73 +1,75 @@
 items:
-  # --- ОРУЖИЕ (WEAPON) ---
-  rusty_pipe:
-    name: "Іржава труба"
-    type: WEAPON
-    slot: MAIN_HAND
-    price: 10
-    min-damage: 3
-    max-damage: 6
-    crit-chance: 0.05
+  items:
+    # --- ОРУЖИЕ (WEAPON) ---
+    rusty_pipe:
+      name: "Іржава труба"
+      type: WEAPON
+      slot: MAIN_HAND
+      price: 10
+      min-damage: 3
+      max-damage: 6
+      crit-chance: 0.05
 
-  rusty_knife:
-    name: "Тупий ніж"
-    type: WEAPON
-    slot: MAIN_HAND
-    price: 25
-    min-damage: 5
-    max-damage: 9
-    crit-chance: 0.10
+    rusty_knife:
+      name: "Тупий ніж"
+      type: WEAPON
+      slot: MAIN_HAND
+      price: 25
+      min-damage: 5
+      max-damage: 9
+      crit-chance: 0.10
 
-  glock_17:
-    name: "Glock 17"
-    type: WEAPON
-    slot: MAIN_HAND
-    price: 500
-    min-damage: 12
-    max-damage: 18
-    crit-chance: 0.15
+    glock_17:
+      name: "Glock 17"
+      type: WEAPON
+      slot: MAIN_HAND
+      price: 500
+      min-damage: 12
+      max-damage: 18
+      crit-chance: 0.15
 
-  # --- БРОНЯ (ARMOR) ---
-  leather_jacket:
-    name: "Шкіряна куртка"
-    type: ARMOR
-    slot: BODY
-    price: 50
-    defense: 5
+    # --- БРОНЯ (ARMOR) ---
+    leather_jacket:
+      name: "Шкіряна куртка"
+      type: ARMOR
+      slot: BODY
+      price: 50
+      defense: 5
 
-  police_vest:
-    name: "Бронежилет поліції"
-    type: ARMOR
-    slot: BODY
-    price: 300
-    defense: 20
+    police_vest:
+      name: "Бронежилет поліції"
+      type: ARMOR
+      slot: BODY
+      price: 300
+      defense: 20
 
-  # --- ХІЛКИ ТА ЇЖА (CONSUMABLE) ---
-  bandage:
-    name: "Брудний бинт"
-    type: CONSUMABLE
-    price: 15
-    heal-amount: 20
+    # --- ХІЛКИ ТА ЇЖА (CONSUMABLE) ---
+    bandage:
+      name: "Брудний бинт"
+      type: CONSUMABLE
+      price: 15
+      heal-amount: 20
 
-  medkit:
-    name: "Військова аптечка"
-    type: CONSUMABLE
-    price: 100
-    heal-amount: 50
+    medkit:
+      name: "Військова аптечка"
+      type: CONSUMABLE
+      price: 100
+      heal-amount: 50
 
-  vodka:
-    name: "Пляшка горілки"
-    type: CONSUMABLE
-    price: 20
-    heal-amount: 5
+    vodka:
+      name: "Пляшка горілки"
+      type: CONSUMABLE
+      price: 20
+      heal-amount: 5
 
-  # --- ХЛАМ (MISC) ---
-  rat_tail:
-    name: "Хвіст щура"
-    type: MISC
-    price: 5
+    # --- ХЛАМ (MISC) ---
+    rat_tail:
+      name: "Хвіст щура"
+      type: MISC
+      price: 5
 
-  rifle_ammo:
-    name: "Набої 5.56"
-    type: MISC
-    price: 2
+    rifle_ammo:
+      name: "Набої 5.56"
+      type: MISC
+      price: 2
+    items:

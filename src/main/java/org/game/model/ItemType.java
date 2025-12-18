@@ -1,5 +1,8 @@
 package org.game.model;
 
 public enum ItemType {
-    WEAPON
+    WEAPON,
+    ARMOR,
+    CONSUMABLE,
+    MISC
 }

@@ -1,42 +1,43 @@
 enemies:
-  rat:
-    name: "Гігантський Щур"
-    hp: 30
-    damage-min: 2
-    damage-max: 5
-    defense: 0
-    agility: 4
-    exp-reward: 10
-    money-min: 1
-    money-max: 5
-    loot:
-      "rat_tail": 0.5
+  enemies:
+    rat:
+      name: "Гігантський Щур"
+      hp: 30
+      damage-min: 2
+      damage-max: 5
+      defense: 0
+      agility: 4
+      exp-reward: 10
+      money-min: 1
+      money-max: 5
+      loot:
+        "rat_tail": 0.5
 
-  patrol:
-    name: "Патрульний"
-    hp: 60
-    damage-min: 5
-    damage-max: 8
-    defense: 5
-    agility: 6
-    exp-reward: 30
-    money-min: 10
-    money-max: 25
-    loot:
-      "rusty_knife": 0.2
-      "bandage": 0.3
-      "vodka": 0.1
+    patrol:
+      name: "Патрульний"
+      hp: 60
+      damage-min: 5
+      damage-max: 8
+      defense: 5
+      agility: 6
+      exp-reward: 30
+      money-min: 10
+      money-max: 25
+      loot:
+        "rusty_knife": 0.2
+        "bandage": 0.3
+        "vodka": 0.1
 
-  sniper:
-    name: "Снайпер-дезертир"
-    hp: 50
-    damage-min: 15
-    damage-max: 25
-    defense: 2
-    agility: 12
-    exp-reward: 50
-    money-min: 30
-    money-max: 60
-    loot:
-      "rifle_ammo": 0.4
-      "medkit": 0.2
+    sniper:
+      name: "Снайпер-дезертир"
+      hp: 50
+      damage-min: 15
+      damage-max: 25
+      defense: 2
+      agility: 12
+      exp-reward: 50
+      money-min: 30
+      money-max: 60
+      loot:
+        "rifle_ammo": 0.4
+        "medkit": 0.2

@@ -12,7 +12,7 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix = "items")
 public class ItemsConfig {
-    private Map<String, ItemsProps> locations;
+    private Map<String, ItemsProps> items;
 
     @Data
     public static class ItemsProps {
