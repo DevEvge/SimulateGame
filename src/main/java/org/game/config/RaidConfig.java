@@ -11,8 +11,8 @@ import java.util.Map;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "raid-configs")
-public class GameConfig {
+@ConfigurationProperties(prefix = "locations")
+public class RaidConfig {
     private Map<String, RaidLocationProps> locations;
 
     @Data

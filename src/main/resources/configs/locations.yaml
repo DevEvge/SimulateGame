@@ -1,47 +1,46 @@
-raid-configs:
-  locations:
-    slums:
-      width: 50
-      height: 20
-      population: 0.15
-      allowed-enemies:
-        - PATROL
-        - RAT
-        - SNIPER
-      spawn-points:
-        - {x: 1, y: 1}
-        - {x: 10, y: 5}
-      exits:
-        - {x: 48, y: 48}
-      pois:
-        - {x: 25, y: 25}
+locations:
+  slums:
+    width: 50
+    height: 20
+    population: 0.15
+    allowed-enemies:
+      - PATROL
+      - RAT
+      - SNIPER
+    spawn-points:
+      - { x: 1, y: 1 }
+      - { x: 10, y: 5 }
+    exits:
+      - { x: 48, y: 48 }
+    pois:
+      - { x: 25, y: 25 }
 
-    industrial:
-      width: 50
-      height: 50
-      population: 0.2
-      allowed-enemies:
-        - PATROL
-        - RAT
-        - SNIPER
-      spawn-points:
-        - { x: 1, y: 1 }
-        - { x: 10, y: 5 }
-      exits:
-        - { x: 48, y: 48 }
-      pois: []
+  industrial:
+    width: 50
+    height: 50
+    population: 0.2
+    allowed-enemies:
+      - PATROL
+      - RAT
+      - SNIPER
+    spawn-points:
+      - { x: 1, y: 1 }
+      - { x: 10, y: 5 }
+    exits:
+      - { x: 48, y: 48 }
+    pois: [ ]
 
-    downtown:
-      width: 50
-      height: 50
-      population: 0.5
-      allowed-enemies:
-        - PATROL
-        - RAT
-        - SNIPER
-      spawn-points:
-        - { x: 1, y: 1 }
-        - { x: 10, y: 5 }
-      exits:
-        - { x: 48, y: 48 }
-      pois: []
+  downtown:
+    width: 50
+    height: 50
+    population: 0.5
+    allowed-enemies:
+      - PATROL
+      - RAT
+      - SNIPER
+    spawn-points:
+      - { x: 1, y: 1 }
+      - { x: 10, y: 5 }
+    exits:
+      - { x: 48, y: 48 }
+    pois: [ ]

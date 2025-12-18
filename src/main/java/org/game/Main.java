@@ -1,6 +1,9 @@
 package org.game;
 
 import lombok.RequiredArgsConstructor;
+import org.game.config.EnemiesConfig;
+import org.game.config.ItemsConfig;
+import org.game.config.RaidConfig;
 import org.game.controller.RaidController;
 import org.game.model.Direction;
 import org.game.model.Locations;
@@ -8,6 +11,7 @@ import org.game.model.RaidState;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Scanner;
@@ -15,6 +19,7 @@ import java.util.Scanner;
 @SpringBootApplication
 @EnableScheduling
 @RequiredArgsConstructor
+@EnableConfigurationProperties({RaidConfig.class, ItemsConfig.class, EnemiesConfig.class})
 public class Main implements CommandLineRunner {
     private final RaidController controller;
 

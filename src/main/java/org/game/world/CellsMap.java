@@ -1,6 +1,6 @@
 package org.game.world;
 
-import org.game.config.GameConfig.RaidLocationProps;
+import org.game.config.RaidConfig.RaidLocationProps;
 import org.game.units.Creature;
 import org.game.units.Enemy;
 import org.game.units.EnemyFactory;

@@ -2,8 +2,8 @@ package org.game.controller;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.game.config.GameConfig;
-import org.game.config.GameConfig.RaidLocationProps;
+import org.game.config.RaidConfig;
+import org.game.config.RaidConfig.RaidLocationProps;
 import org.game.model.Direction;
 import org.game.model.Locations;
 import org.game.model.Point;
@@ -21,7 +21,7 @@ import java.util.Random;
 @Service
 @RequiredArgsConstructor
 public class RaidController {
-    private final GameConfig gameConfig;
+    private final RaidConfig raidConfig;
     private final EnemyFactory factory;
     private Hero hero;
     private CellsMap map;
@@ -29,7 +29,7 @@ public class RaidController {
 
     public void startRaid(Locations location) {
         String key = location.name().toLowerCase();
-        RaidLocationProps props = gameConfig.getLocations().get(key);
+        RaidLocationProps props = raidConfig.getLocations().get(key);
         map = new CellsMap(props);
         state = RaidState.EXPLORING;
 
