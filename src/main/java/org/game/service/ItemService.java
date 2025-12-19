@@ -13,8 +13,7 @@ public class ItemService {
     public Item getItem(String id) {
         var props = itemsConfig.getItems().get(id);
         if (props == null) {
-            System.out.println("Item with id " + id + " not found");
-            return null;
+            throw new IllegalArgumentException("CRITICAL: Config not found for item: " + id);
         }
 
         return Item.builder()

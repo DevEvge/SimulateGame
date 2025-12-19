@@ -4,10 +4,9 @@ import org.game.config.RaidConfig.RaidLocationProps;
 import org.game.units.Creature;
 import org.game.units.Enemy;
 import org.game.units.EnemyFactory;
+import org.game.utils.RandomUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class CellsMap {
 
@@ -31,29 +30,24 @@ public class CellsMap {
     }
 
     public void populateEnemies(EnemyFactory factory) {
-        double chance = props.getPopulation();
-        for (int x = 0; x < props.getWidth(); x++) {
-            for (int y = 0; y < props.getHeight(); y++) {
-                if (random.nextDouble() < chance) {
+        Arrays.stream(cells)
+                .flatMap(Arrays::stream)
+                .filter(cell -> RandomUtils.checkChance(props.getPopulation()))
+                .forEach(cell -> {
                     Enemy enemy = factory.createEnemy(props.getAllowedEnemies());
-
-                    if (enemy != null) {
-                        cells[x][y].addResident(enemy);
-                    }
-                }
-            }
-        }
+                    if (enemy != null) cell.addResident(enemy);
+                });
     }
 
     public boolean isValid(int x, int y) {
         return x >= 0 && x < props.getWidth() && y >= 0 && y < props.getHeight();
     }
 
-    public Cell getCell(int x, int y) {
+    public Optional<Cell> getCell(int x, int y) {
         if (isValid(x, y)) {
-            return cells[x][y];
+            return Optional.of(cells[x][y]);
         }
-        return null;
+        return Optional.empty();
     }
 
     public List<Enemy> getAllEnemies() {

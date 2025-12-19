@@ -76,6 +76,7 @@ public class RaidController {
         Random random = new Random();
         Point spawnPoint = spawnPoints.get(random.nextInt(spawnPoints.size()));
         hero = new Hero("Boris Britva");
-        map.getCell(spawnPoint.getX(), spawnPoint.getY()).addResident(hero);
+        map.getCell(spawnPoint.getX(), spawnPoint.getY())
+                .ifPresent(cell -> cell.addResident(hero));
     }
 }

@@ -2,24 +2,25 @@ package org.game.player.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.extern.slf4j.Slf4j;
 import org.game.model.Direction;
 import org.game.model.Item;
 import org.game.model.SlotType;
 import org.game.player.Equipment;
 import org.game.player.Wallet;
 import org.game.units.Creature;
+import org.game.utils.RandomUtils;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
+@Slf4j
+@EqualsAndHashCode(callSuper = true)
 public class Hero extends Creature {
     private int currentExp = 0;
     private int lvl = 1;
-    private int money = 0;
-    private int materials = 0;
     private String icon = "\uD83D\uDD34";
     private Equipment equipment = new Equipment();
     private Wallet wallet = new Wallet();
@@ -34,56 +35,42 @@ public class Hero extends Creature {
     }
 
     public int calculateTotalDamage() {
-        int baseDamage = getRandom(getMinDamage(), getMaxDamage());
+        int baseDamage = RandomUtils.getInt(getMinDamage(), getMaxDamage());
 
-        int weaponDamage = 0;
-        double critChance = 0.0;
+        int weaponDamage = equipment.getItem(SlotType.MAIN_HAND)
+                .map(item -> RandomUtils.getInt(item.getMinDamage(), item.getMaxDamage()))
+                .orElse(0);
 
-        Item weapon = equipment.getItem(SlotType.MAIN_HAND);
-        if (weapon != null) {
-            weaponDamage = getRandom(getMinDamage(), getMaxDamage());
-            critChance = weapon.getCritChance();
+        double critChance = equipment.getItem(SlotType.MAIN_HAND)
+                .map(Item::getCritChance)
+                .orElse(0.0);
+
+        int total = baseDamage + weaponDamage;
+
+        if (RandomUtils.checkChance(critChance)) {
+            log.info("\uD83D\uDCA5 КРИТИЧЕСКИЙ УДАР!");
+            total = (int) (total * 1.5);
         }
-
-        int totalDamage = baseDamage + weaponDamage;
-        boolean isCrit = ThreadLocalRandom.current().nextDouble() < critChance;
-
-        if (isCrit) {
-            System.out.println("Crit damage!");
-            totalDamage = (int) (totalDamage * 1.5);
-        }
-        return totalDamage;
+        return total;
     }
 
     public int calculateTotalDefense () {
-        int totalDef = getDefense();
-        Item armor = equipment.getItem(SlotType.BODY);
+        int armorDef = equipment.getItem(SlotType.BODY)
+                .map(Item::getDefense)
+                .orElse(0);
 
-        if (armor != null) {
-            totalDef += armor.getDefense();
-        }
-
-        return totalDef;
+        return getDefense() + armorDef;
     }
 
     public void manualMove(CellsMap map, Direction dir) {
-        Cell currentCell = getCurrentCell();
-        if (currentCell == null) return;
+        if (getCurrentCell() == null) return;
 
-        int newX = currentCell.getX() + dir.getDx();
-        int newY = currentCell.getY() + dir.getDy();
+        int newX = getCurrentCell().getX() + dir.getDx();
+        int newY = getCurrentCell().getY() + dir.getDy();
 
-        if (!map.isValid(newX, newY)) {
-            System.out.println("Некорректные координаты");
-            return;
-        }
-
-        Cell targetCell = map.getCell(newX, newY);
-        moveTo(targetCell);
-    }
-
-    private int getRandom(int min, int max) {
-        if (min == max) return min;
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
+        map.getCell(newX, newY).ifPresentOrElse(
+                this::moveTo,
+                () -> log.info("Некорректные координаты: {} {}", newX, newY)
+        );
     }
 }

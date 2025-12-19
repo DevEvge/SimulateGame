@@ -37,8 +37,7 @@ public class Enemy extends Creature {
         int newY = current.getY() + dy;
 
         if (map.isValid(newX, newY)) {
-            Cell targetCell = map.getCell(newX, newY);
-            moveTo(targetCell);
+            map.getCell(newX, newY).ifPresent(this::moveTo);
         }
     }
 

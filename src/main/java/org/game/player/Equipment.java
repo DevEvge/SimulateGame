@@ -1,32 +1,35 @@
 package org.game.player;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.game.model.Item;
-import org.game.model.ItemType;
 import org.game.model.SlotType;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Data
+@Slf4j
 public class Equipment {
-    private Map<SlotType, Item> items;
+    private Map<SlotType, Item> items = new  HashMap<>();
 
     public void equip(Item item) {
         if (item.getSlot() == SlotType.NONE) {
-            System.out.println("Цей предмет не можня одягнути");
+            log.warn("Нельзя надеть предмет без слота: {}", item.getName());
             return;
         }
-        items.put(item.getSlot(), item);
-        System.out.println("Предмет экіпіровано " + item.getName());
+
+        Item oldItem = items.put(item.getSlot(), item);
+
+        if (oldItem != null) {
+            log.info("Снято: {}, Надето: {}", oldItem.getName(), item.getName());
+            //TODO: вернуть олд итем в инвентарь
+        } else {
+            log.info("Надет: {}", item.getName());
+        }
     }
 
-    public Item getItem(SlotType slot) {
-        return items.get(slot);
+    public Optional<Item> getItem(SlotType slot) {
+        return Optional.ofNullable(items.get(slot));
     }
-
-    public boolean hasItem(SlotType slot) {
-        return items.containsKey(SlotType.MAIN_HAND);
-    }
-
-
 }
