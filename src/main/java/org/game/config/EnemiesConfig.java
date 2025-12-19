@@ -10,10 +10,10 @@ import java.util.Map;
 @Configuration
 @ConfigurationProperties(prefix = "enemies")
 public class EnemiesConfig {
-    private Map<String, enemiesProp> enemies;
+    private Map<String, EnemiesProp> enemies;
 
     @Data
-    public static class enemiesProp {
+    public static class EnemiesProp {
         private String name;
         private int hp;
         private int damageMin;

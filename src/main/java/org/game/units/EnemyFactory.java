@@ -42,6 +42,5 @@ public class EnemyFactory {
                 .moneyMax(props.getMoneyMax())
                 .loot(props.getLoot())
                 .build();
-
     }
 }
