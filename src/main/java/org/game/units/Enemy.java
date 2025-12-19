@@ -1,14 +1,16 @@
 package org.game.units;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.game.model.EnemyType;
+import org.game.utils.RandomUtils;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
 
 import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 @Data
@@ -25,12 +27,11 @@ public class Enemy extends Creature {
     private Map<String, Double> loot;
 
 
-
     public void move(CellsMap map) {
         Cell current = getCurrentCell();
         if (current == null) return;
-        int dx = ThreadLocalRandom.current().nextInt(3) - 1;
-        int dy = ThreadLocalRandom.current().nextInt(3) - 1;
+        int dx = RandomUtils.getInt(-1, 1);
+        int dy = RandomUtils.getInt(-1, 1);
 
         if (dx == 0 && dy == 0) return;
         int newX = current.getX() + dx;

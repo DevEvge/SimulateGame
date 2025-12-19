@@ -2,6 +2,7 @@ package org.game.controller;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.game.config.RaidConfig;
 import org.game.config.RaidConfig.RaidLocationProps;
 import org.game.model.Direction;
@@ -10,14 +11,15 @@ import org.game.model.Point;
 import org.game.model.RaidState;
 import org.game.player.model.Hero;
 import org.game.units.EnemyFactory;
+import org.game.utils.RandomUtils;
 import org.game.world.Cell;
 import org.game.world.CellsMap;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Data
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class RaidController {
@@ -48,12 +50,12 @@ public class RaidController {
     }
 
     public void fight() {
-        System.out.println("Тут будет бой");
+        log.info("Player choose fight");
         state = RaidState.EXPLORING;
     }
 
     public void escape() {
-        System.out.println("Тут будет сбег");
+        log.info("Player choose escape");
         state = RaidState.EXPLORING;
     }
 
@@ -73,8 +75,7 @@ public class RaidController {
 
     private void spawnHero(RaidLocationProps props) {
         List<Point> spawnPoints = props.getSpawnPoints();
-        Random random = new Random();
-        Point spawnPoint = spawnPoints.get(random.nextInt(spawnPoints.size()));
+        Point spawnPoint = RandomUtils.getRandomElement(spawnPoints);
         hero = new Hero("Boris Britva");
         map.getCell(spawnPoint.getX(), spawnPoint.getY())
                 .ifPresent(cell -> cell.addResident(hero));
