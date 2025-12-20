@@ -8,6 +8,7 @@ items:
       price: 10
       min-damage: 3
       max-damage: 6
+      max-stack: 1
       crit-chance: 0.05
 
     rusty_knife:
@@ -17,6 +18,7 @@ items:
       price: 25
       min-damage: 5
       max-damage: 9
+      max-stack: 1
       crit-chance: 0.10
 
     glock_17:
@@ -26,6 +28,7 @@ items:
       price: 500
       min-damage: 12
       max-damage: 18
+      max-stack: 1
       crit-chance: 0.15
 
     # --- БРОНЯ (ARMOR) ---
@@ -35,6 +38,7 @@ items:
       slot: BODY
       price: 50
       defense: 5
+      max-stack: 1
 
     police_vest:
       name: "Бронежилет поліції"
@@ -42,6 +46,7 @@ items:
       slot: BODY
       price: 300
       defense: 20
+      max-stack: 1
 
     # --- ХІЛКИ ТА ЇЖА (CONSUMABLE) ---
     bandage:
@@ -49,27 +54,31 @@ items:
       type: CONSUMABLE
       price: 15
       heal-amount: 20
+      max-stack: 3
 
     medkit:
       name: "Військова аптечка"
       type: CONSUMABLE
       price: 100
       heal-amount: 50
+      max-stack: 3
 
     vodka:
       name: "Пляшка горілки"
       type: CONSUMABLE
       price: 20
       heal-amount: 5
+      max-stack: 3
 
     # --- ХЛАМ (MISC) ---
     rat_tail:
       name: "Хвіст щура"
       type: MISC
       price: 5
+      max-stack: 5
 
     rifle_ammo:
       name: "Набої 5.56"
       type: MISC
       price: 2
-    items:
+      max-stack: 5

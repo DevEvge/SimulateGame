@@ -27,6 +27,7 @@ public class ItemService {
                 .critChance(props.getCritChance())
                 .defense(props.getDefense())
                 .healAmount(props.getHealAmount())
+                .maxStack(props.getMaxStack())
                 .build();
     }
 }

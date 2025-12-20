@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.game.config.RaidConfig;
 import org.game.config.RaidConfig.RaidLocationProps;
-import org.game.model.Direction;
-import org.game.model.Locations;
-import org.game.model.Point;
-import org.game.model.RaidState;
+import org.game.model.*;
 import org.game.player.model.Hero;
+import org.game.service.ItemService;
 import org.game.units.EnemyFactory;
 import org.game.utils.RandomUtils;
 import org.game.world.Cell;
@@ -25,6 +23,7 @@ import java.util.List;
 public class RaidController {
     private final RaidConfig raidConfig;
     private final EnemyFactory factory;
+    private final ItemService itemService;
     private Hero hero;
     private CellsMap map;
     private RaidState state = RaidState.EXPLORING;
@@ -38,6 +37,9 @@ public class RaidController {
         map.populateEnemies(factory);
         spawnHero(props);
         raidStatistic(location, props);
+        Item medkit = itemService.getItem("medkit");
+        hero.getInventory().addItem(medkit);
+
     }
 
 

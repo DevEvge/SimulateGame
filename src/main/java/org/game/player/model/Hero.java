@@ -7,6 +7,8 @@ import org.game.model.Direction;
 import org.game.model.Item;
 import org.game.model.SlotType;
 import org.game.player.Equipment;
+import org.game.player.Inventory;
+import org.game.player.ItemStack;
 import org.game.player.Wallet;
 import org.game.units.Creature;
 import org.game.utils.RandomUtils;
@@ -24,6 +26,7 @@ public class Hero extends Creature {
     private String icon = "\uD83D\uDD34";
     private Equipment equipment = new Equipment();
     private Wallet wallet = new Wallet();
+    private Inventory inventory = new Inventory(20);
 
     public Hero(String name) {
         setName(name);
@@ -54,7 +57,7 @@ public class Hero extends Creature {
         return total;
     }
 
-    public int calculateTotalDefense () {
+    public int calculateTotalDefense() {
         int armorDef = equipment.getItem(SlotType.BODY)
                 .map(Item::getDefense)
                 .orElse(0);
@@ -72,5 +75,36 @@ public class Hero extends Creature {
                 this::moveTo,
                 () -> log.info("Некорректные координаты: {} {}", newX, newY)
         );
+    }
+
+    public void equipFromInventory(int inventorySlotIndex) {
+        ItemStack stack = inventory.getStack(inventorySlotIndex);
+        if (stack == null) {
+            log.warn("Слот {} пустий!", inventorySlotIndex);
+            return;
+        }
+        Item itemToEquip = stack.getItem();
+        if (itemToEquip.getSlot() == SlotType.NONE) {
+            log.warn("Цей предмет не можна одягнути: {}", itemToEquip.getName());
+            return;
+        }
+
+        log.info("Спроба одягнути: {}", itemToEquip.getName());
+
+        Item oldItem = equipment.getItem(itemToEquip.getSlot()).orElse(null);
+        Item takenItem = inventory.removeItem(inventorySlotIndex, 1);
+
+        if (takenItem != null) {
+            equipment.equip(takenItem);
+            if (oldItem != null) {
+                boolean added = inventory.addItem(oldItem);
+                if (!added) {
+                    log.error("УВАГА! Не вдалося покласти стару річ назад, вона випала на землю (TODO)");
+                }
+            }
+
+        }
+
+
     }
 }

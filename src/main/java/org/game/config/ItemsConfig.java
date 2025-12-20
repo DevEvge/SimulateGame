@@ -25,5 +25,6 @@ public class ItemsConfig {
         private double critChance;
         private int defense;
         private int healAmount;
+        private int maxStack;
     }
 }

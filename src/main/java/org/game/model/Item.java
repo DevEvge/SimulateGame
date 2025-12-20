@@ -22,4 +22,5 @@ public class Item {
 
     private int defense;
     private int healAmount;
+    private int maxStack;
 }
